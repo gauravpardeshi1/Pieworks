@@ -1,26 +1,28 @@
 <!-- ************************** -->
 <!-- Create By Joker Banny -->
-<div class="h-auto bg-blue-500 flex justify-center pt-10 px-5 ">
+<div [ngClass]="{ 'bg-blue-500': weatherData, 'bg-blue-200': !weatherData }"
+   class="h-auto   flex justify-center pt-10 px-5 ">
    <div class="space-y-10 ">
-      <h1 class="text-gray-600 text-center text-4xl font-bold">Welcome To Weather App</h1>
+      <h1 class="text-white text-center text-4xl font-bold">Welcome To Weather App</h1>
 
       <div
-         class="flex border w-z items-center p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500">
+         class="flex border w-z items-center p-6 space-x-6 bg-blue-200 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500">
          <div class="flex bg-gray-100 p-4 w-96 space-x-4 rounded-lg">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24"
                stroke="currentColor">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <input class="bg-gray-100 outline-none" type="text" placeholder="Search your city ..." />
+            <input id="cityname" [(ngModel)]="cityname" name="cityname" class="bg-gray-100 outline-none" type="text"
+               placeholder="Search your city ..." />
          </div>
 
-         <div
-            class="bg-indigo-600 py-3 px-5 text-white font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer">
+         <div (click)="searchcity()"
+            class="bg-indigo-500 hover:bg-blue-800 py-3 px-5 text-white font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer">
             <span>Search</span>
          </div>
          <button (click)="openModal()" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-            class="bg-indigo-600 py-3.5 px-5 text-white font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer block mx-auto   hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="bg-indigo-500 py-3.5 px-5 text-white font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer block mx-auto   hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button">
             ADD CITY
          </button>
@@ -78,9 +80,9 @@
 
 
 <!-- ******Modal******* -->
-<div class="bg-gradient-to-b from-blue-500 via-blue-300 to-blue-100 font-sans">
+<div *ngIf="weatherData" class="bg-gradient-to-b from-blue-500 via-blue-300 to-blue-100 font-sans">
    <div class="container mx-auto py-12 text-center text-white">
-      <h1 class="text-3xl font-semibold mb-4">Weather in Mumbai, India</h1>
+      <h1 class="text-3xl font-semibold mb-4">Weather in {{weatherData.name}}, {{weatherData.sys.country}}</h1>
       <div class="flex justify-center items-center space-x-4">
          <div class="flex items-center">
             <!-- Placeholder icon, replace with actual weather icon -->
@@ -93,13 +95,150 @@
          </div>
          <div>
             <p class="text-xl font-semibold">Description: Partly Cloudy</p>
-            <p class="text-lg">Humidity: 50%</p>
-            <p class="text-lg">Wind: 10 km/h</p>
+            <p class="text-lg">Humidity: {{weatherData.main.humidity}}%</p>
+            <p class="text-lg">Wind: {{weatherData.wind.speed*3.6 | number:'1.0-0' }} km/h</p>
          </div>
       </div>
-      <button class="mt-8 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full">
-         Refresh Weather
+      <button (click)="closedata()"
+         class="mt-8 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full">
+         Back To Page
       </button>
    </div>
+
+</div>
+
+
+<div *ngIf="!weatherData"
+   class="bg-gradient-to-b  flex justify-evenly  from-blue-200 via-blue-300 to-blue-100 font-sans">
+   <!-- component -->
+   <div class=" flex items-center justify-center w-full">
+      <div class="flex flex-col bg-gray-100 rounded p-4 w-full max-w-xs">
+         <div class="font-bold text-xl">Sydney</div>
+         <div class="text-sm text-gray-500">Thursday 10 May 2020</div>
+         <div
+            class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
+            <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+            </svg>
+         </div>
+         <div class="flex flex-row items-center justify-center mt-6">
+            <div class="font-medium text-6xl">24°</div>
+            <div class="flex flex-col items-center ml-6">
+               <div>Cloudy</div>
+               <div class="mt-1">
+                  <span class="text-sm"><i class="far fa-long-arrow-up"></i></span>
+                  <span class="text-sm font-light text-gray-500">28°C</span>
+               </div>
+               <div>
+                  <span class="text-sm"><i class="far fa-long-arrow-down"></i></span>
+                  <span class="text-sm font-light text-gray-500">20°C</span>
+               </div>
+            </div>
+         </div>
+         <div class="flex flex-row justify-between mt-6">
+            <div class="flex flex-col items-center">
+               <div class="font-medium text-sm">Wind</div>
+               <div class="text-sm text-gray-500">9k/h</div>
+            </div>
+            <div class="flex flex-col items-center">
+               <div class="font-medium text-sm">Humidity</div>
+               <div class="text-sm text-gray-500">68%</div>
+            </div>
+            <div class="flex flex-col items-center">
+               <div class="font-medium text-sm">Visibility</div>
+               <div class="text-sm text-gray-500">10km</div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- component -->
+   <div class="min-h-screen flex items-center justify-center  w-full">
+      <div class="flex flex-col bg-gray-100 rounded p-4 w-full max-w-xs">
+         <div class="font-bold text-xl">Sydney</div>
+         <div class="text-sm text-gray-500">Thursday 10 May 2020</div>
+         <div
+            class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
+            <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+            </svg>
+         </div>
+         <div class="flex flex-row items-center justify-center mt-6">
+            <div class="font-medium text-6xl">24°</div>
+            <div class="flex flex-col items-center ml-6">
+               <div>Cloudy</div>
+               <div class="mt-1">
+                  <span class="text-sm"><i class="far fa-long-arrow-up"></i></span>
+                  <span class="text-sm font-light text-gray-500">28°C</span>
+               </div>
+               <div>
+                  <span class="text-sm"><i class="far fa-long-arrow-down"></i></span>
+                  <span class="text-sm font-light text-gray-500">20°C</span>
+               </div>
+            </div>
+         </div>
+         <div class="flex flex-row justify-between mt-6">
+            <div class="flex flex-col items-center">
+               <div class="font-medium text-sm">Wind</div>
+               <div class="text-sm text-gray-500">9k/h</div>
+            </div>
+            <div class="flex flex-col items-center">
+               <div class="font-medium text-sm">Humidity</div>
+               <div class="text-sm text-gray-500">68%</div>
+            </div>
+            <div class="flex flex-col items-center">
+               <div class="font-medium text-sm">Visibility</div>
+               <div class="text-sm text-gray-500">10km</div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- component -->
+   <div class="min-h-screen flex items-center justify-center  w-full">
+      <div class="flex flex-col bg-gray-100 rounded p-4 w-full max-w-xs">
+         <div class="font-bold text-xl">Sydney</div>
+         <div class="text-sm text-gray-500">Thursday 10 May 2020</div>
+         <div
+            class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
+            <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+            </svg>
+         </div>
+         <div class="flex flex-row items-center justify-center mt-6">
+            <div class="font-medium text-6xl">24°</div>
+            <div class="flex flex-col items-center ml-6">
+               <div>Cloudy</div>
+               <div class="mt-1">
+                  <span class="text-sm"><i class="far fa-long-arrow-up"></i></span>
+                  <span class="text-sm font-light text-gray-500">28°C</span>
+               </div>
+               <div>
+                  <span class="text-sm"><i class="far fa-long-arrow-down"></i></span>
+                  <span class="text-sm font-light text-gray-500">20°C</span>
+               </div>
+            </div>
+         </div>
+         <div class="flex flex-row justify-between mt-6">
+            <div class="flex flex-col items-center">
+               <div class="font-medium text-sm">Wind</div>
+               <div class="text-sm text-gray-500">9k/h</div>
+            </div>
+            <div class="flex flex-col items-center">
+               <div class="font-medium text-sm">Humidity</div>
+               <div class="text-sm text-gray-500">68%</div>
+            </div>
+            <div class="flex flex-col items-center">
+               <div class="font-medium text-sm">Visibility</div>
+               <div class="text-sm text-gray-500">10km</div>
+            </div>
+         </div>
+      </div>
+   </div>
+
 
 </div>
