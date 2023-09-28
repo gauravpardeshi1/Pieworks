@@ -20,7 +20,8 @@
         },
         "conditions": "Partly Cloudy"
       }
-    }, {
+    },
+    {
       "id": 2,
       "city": "London",
       "country": "US",
@@ -40,7 +41,8 @@
         },
         "conditions": "Partly Cloudy"
       }
-    }, {
+    },
+    {
       "id": 3,
       "city": "Delhi",
       "country": "US",
@@ -60,7 +62,8 @@
         },
         "conditions": "Partly Cloudy"
       }
-    }, {
+    },
+    {
       "id": 4,
       "city": "Goa",
       "country": "US",
@@ -81,5 +84,6 @@
         "conditions": "Partly Cloudy"
       }
     }
+    
   ]
 }

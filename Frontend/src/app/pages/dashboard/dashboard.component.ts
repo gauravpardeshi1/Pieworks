@@ -12,15 +12,26 @@ export class DashboardComponent {
   isOpen: boolean = false;
   isModalOpen: boolean = false;
   weatherData: any;
-  showalert:boolean=false
+  showalert: boolean = false
   cityname: string = '';
+
+
+  name: string = '';
+  temperature: number | null = null;
+  Humidity: number | null = null;
+  windspeed: number | null = null;
+  min: number | null = null;
+  max: number | null = null;
+  country: string = '';
+
+
   private apiKey = '8620d226aa7170528e89de5cbd41a338';
   private apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  closedata(){
-    this.weatherData=false
+  closedata() {
+    this.weatherData = false
   }
   getWeather(cityname: string): Observable<any> {
     const params = { q: cityname, appid: this.apiKey };
@@ -45,17 +56,56 @@ export class DashboardComponent {
   }
   closeModal() {
     this.isOpen = false;
-   
+
     console.log(this.isOpen)
   }
 
- submitdata(){
-  this.showalert=true
-  this.isOpen = false;
-  setTimeout(()=>{
-    this.showalert = false
+  submitdata() {
+    this.showalert = true
+    this.isOpen = false;
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split('T')[0];
+    const citydata = {
+      "city": this.name,
+      "country": this.country,
+      "date": formattedDate,
+      "temperature": this.temperature,
+      "unit": "Celsius",
+      "humidity": this.Humidity,
+      "windspeed": this.windspeed,
+      "conditions": "Partly Cloudy",
+      "icon": "partly-cloudy",
+      "visibility": 10,
+      "forecast": {
+        "temperature": {
+          "min": this.min,
+          "max": this.max,
+          "unit": "Celsius"
+        }
+      },
 
-  },2000)
- }
+
+
+    }
+    //console.log('data', citydata);
+    const apiUrl = 'http://localhost:8080/cities';
+
+    this.http.post(apiUrl, citydata).subscribe(
+      (response) => {
+        console.log('API Response:', response);
+
+
+
+      },
+      (error) => {
+        console.error('API Error:', error);
+
+      }
+    );
+    setTimeout(() => {
+      this.showalert = false
+
+    }, 2000)
+  }
 
 }

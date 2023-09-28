@@ -1,6 +1,7 @@
-<div *ngIf="showalert" role="alert" class="font-regular w-[20%] text-center  mt-5   mb-4 block z-10 fixed top-15 left-0 right-0   bg-blue-400 p-4 text-base leading-5 text-white opacity-100">
+<div *ngIf="showalert" role="alert"
+   class="font-regular w-[20%] text-center  mt-5   mb-4 block z-10 fixed top-15 left-0 right-0   bg-blue-400 p-4 text-base leading-5 text-white opacity-100">
    City added succesfully ..!
- </div>
+</div>
 
 
 
@@ -36,7 +37,7 @@
 
       <!-- Main Modal Form -->
       <div id="authentication-modal" *ngIf="isOpen"
-     class="fixed top-10 left-0 right-0 bottom-0 z-50 flex items-center justify-center mx-auto w-full  p-4 overflow-x-hidden overflow-y-auto bg-opacity-50 bg-black">
+         class="fixed top-10 left-0 right-0 bottom-0 z-50 flex items-center justify-center mx-auto w-full  p-4 overflow-x-hidden overflow-y-auto bg-opacity-50 bg-black">
          <div class="relative w-full max-w-md max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -56,50 +57,84 @@
                      <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                            city name</label>
-                        <input type="text" name="name" id="name"
+                        <input [(ngModel)]="name" type="text" name="name" id="name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                            placeholder="" required>
                      </div>
-                     <div>
-                        <label for="temperature" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your city
-                           temperature</label>
-                        <input type="number" name="temperature" id="temperature" 
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                           required>
+
+                     <div class="flex justify-between">
+                        <div>
+                           <label for="country"
+                              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label>
+                           <select [(ngModel)]="country" name="country" id="country"
+                              class="bg-gray-50 text-gray-900 font-semibold text-sm block w-[123%] border p-2.5  rounded-lg"
+                              name="country" id="country">
+                              <option value="">Select Country</option>
+                              <option value="usa">United States</option>
+                              <option value="canada">Canada</option>
+                              <option value="uk">United Kingdom</option>
+                              <option value="australia">Australia</option>
+                              <option value="germany">Germany</option>
+                              <option value="france">France</option>
+                              <option value="japan">Japan</option>
+                              <option value="china">China</option>
+                              <option value="brazil">Brazil</option>
+                              <option value="india">India</option>
+                              <option value="south-africa">South Africa</option>
+                              <option value="mexico">Mexico</option>
+                              <option value="russia">Russia</option>
+                              <option value="italy">Italy</option>
+                              <option value="spain">Spain</option>
+                           </select>
+
+                        </div>
+                        <div>
+                           <label for="temperature"
+                              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">temperature</label>
+                           <input [(ngModel)]="temperature" type="number" name="temperature" id="temperature"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                              required>
+
+                        </div>
+
                      </div>
                      <div class="flex justify-between">
                         <div>
-                           <label for="temperature" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Humidity</label>
-                           <input type="number" name="Humidity" id="Humidity" 
+                           <label for="temperature"
+                              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Humidity</label>
+                           <input [(ngModel)]="Humidity" type="number" name="Humidity" id="Humidity"
                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                               required>
-                              
+
                         </div>
                         <div>
-                           <label for="temperature" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">wind speed</label>
-                           <input type="number" name="wind" id="wind" 
+                           <label for="temperature"
+                              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">wind speed</label>
+                           <input [(ngModel)]="windspeed" type="number" name="wind" id="wind"
                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                               required>
-                              
+
                         </div>
-                           
+
                      </div>
                      <div class="flex justify-between ">
                         <div>
-                           <label for="temperature" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cloudy</label>
-                           <input type="number" name="cloudymin" id="cloudymin" 
+                           <label for="temperature"
+                              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">forecast
+                              temperature</label>
+                           <input [(ngModel)]="min" type="number" name="min" id="min"
                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="min"  required>
-                              
+                              placeholder="min" required>
+
                         </div>
                         <div>
 
-                           <input type="number" name="cloudymax" id="cloudymax" 
+                           <input [(ngModel)]="max" type="number" name="max" id="max"
                               class="bg-gray-50 border mt-7  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="max"  required>
-                              
+                              placeholder="max" required>
+
                         </div>
-                           
+
                      </div>
                      <button (click)="submitdata()" type="submit"
                         class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
@@ -110,6 +145,7 @@
             </div>
          </div>
       </div>
+
    </div>
 
 
