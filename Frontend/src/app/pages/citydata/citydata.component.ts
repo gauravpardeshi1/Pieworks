@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface City {
@@ -19,6 +19,7 @@ export class CitydataComponent {
   citydata: any = {};
   isOpen: boolean = false;
   isModalOpen: boolean = false;
+  showupdatealert: boolean = false
 
   page: number = 1;
   limit: number = 3
@@ -26,9 +27,9 @@ export class CitydataComponent {
   lastpage = 0;
 
   // Initialize totalRecords
-  getData() {
+  public getData() {
     this.http.get<any[]>(
-      `http://localhost:8080/cities?_page=${this.page}&_limit=3`
+      `http://localhost:3000/cities?_page=${this.page}&_limit=3`
     ).subscribe(
       (data) => {
 
@@ -49,7 +50,7 @@ export class CitydataComponent {
     this.getData();
 
     this.http.get<any[]>(
-      `http://localhost:8080/cities`
+      `http://localhost:3000/cities`
     ).subscribe(
       (data) => {
 
@@ -84,18 +85,18 @@ export class CitydataComponent {
 
     console.log(this.isOpen)
   }
-  updatecity(id: number) {
+  updatecity(id: any) {
     console.log('el', id)
     this.http.get<any[]>(
-      `http://localhost:8080/cities/${id}`
+      `http://localhost:3000/cities/${id}`
     ).subscribe(
       (data) => {
 
         this.citydata = data
-        console.log('singledata', this.citydata)
+       // console.log('singledata',`http://localhost:3000/updatecity/${id}`, this.citydata)
       })
   }
-  callBothFunctions(id: number) {
+  callBothFunctions(id: any) {
     this.updatecity(id);
     this.openModal();
   }
@@ -132,19 +133,24 @@ export class CitydataComponent {
       }
     }
     console.log('updated', data)
-    this.http.patch(`http://localhost:8080/cities/${id}`, data).subscribe(
+    this.http.patch(`http://localhost:3000/cities/${id}`, data).subscribe(
       (response) => {
         // console.log('API Response:', response);
         this.getData()
         this.isOpen = false;
-         
+        this.showupdatealert=true
 
       },
       (error) => {
         console.error('API Error:', error);
 
       }
+      
     );
+    setTimeout(() => {
+      this.showupdatealert = false
+
+    }, 2000)
   }
 
 }

@@ -164,10 +164,10 @@
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 22s8-4 8-10V7l-5-5-5 5v5c0 6-8 10-8 10" />
             </svg>
-            <p class="text-2xl font-semibold ml-2">25°C</p>
+            <p class="text-2xl font-semibold ml-2">{{ kelvinToCelsius(weatherData.main.temp) }}°C</p>
          </div>
          <div>
-            <p class="text-xl font-semibold">Description: Partly Cloudy</p>
+            <p class="text-xl font-semibold">Description: {{ weatherData.weather[0].description }}</p>
             <p class="text-lg">Humidity: {{weatherData.main.humidity}}%</p>
             <p class="text-lg">Wind: {{weatherData.wind.speed*3.6 | number:'1.0-0' }} km/h</p>
          </div>

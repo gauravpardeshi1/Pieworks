@@ -1,10 +1,15 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+
 const connection = require("./db");
 const {userRouter} = require('./routes/city.router');
 
 const port = process.env.PORT || 3000;
+require("dotenv").config();
+
 app.use(express.json())
+app.use(cors());
 
 app.use('/wheather', userRouter);
 app.use('/cities', userRouter);

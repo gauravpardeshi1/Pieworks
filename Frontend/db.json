@@ -63,7 +63,7 @@
       }
     },
     {
-      "city": "Mumbai",
+      "city": "Nashik",
       "country": "india",
       "date": "2023-09-28",
       "temperature": 25,
@@ -75,8 +75,6 @@
       "visibility": 10,
       "forecast": {
         "temperature": {
-          "min": 10,
-          "max": 18,
           "unit": "Celsius"
         }
       },

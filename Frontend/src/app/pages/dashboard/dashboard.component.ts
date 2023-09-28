@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CitydataComponent } from '../citydata/citydata.component'; // Adjust the path as needed
 
 @Component({
   selector: 'app-dashboard',
@@ -28,7 +29,7 @@ export class DashboardComponent {
   private apiKey = '8620d226aa7170528e89de5cbd41a338';
   private apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private CitydataComponent: CitydataComponent) { }
 
   closedata() {
     this.weatherData = false
@@ -88,13 +89,13 @@ export class DashboardComponent {
 
     }
     //console.log('data', citydata);
-    const apiUrl = 'http://localhost:8080/cities';
+    const apiUrl = 'http://localhost:3000/cities';
 
     this.http.post(apiUrl, citydata).subscribe(
       (response) => {
         console.log('API Response:', response);
 
-
+        this.CitydataComponent.getData();
 
       },
       (error) => {
@@ -108,4 +109,7 @@ export class DashboardComponent {
     }, 2000)
   }
 
+  kelvinToCelsius(kelvin: number): number {
+    return Math.floor(kelvin - 273.15);
+  }
 }

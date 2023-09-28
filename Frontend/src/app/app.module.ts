@@ -26,7 +26,7 @@ import { CitydataComponent } from './pages/citydata/citydata.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CitydataComponent],
   bootstrap: [AppComponent]
 })
 

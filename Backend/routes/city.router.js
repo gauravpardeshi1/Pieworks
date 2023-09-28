@@ -23,6 +23,15 @@ userRouter.get('/', async (req, res) => {
       res.status(500).json({ error: 'An error occurred while fetching the data.' });
     }
   });
+  userRouter.get('/:id', async (req, res) => {
+    try {
+      const weatherData = await CityModel.find();
+      res.status(200).json(weatherData);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'An error occurred while fetching the data.' });
+    }
+  });
 
 
 
