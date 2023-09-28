@@ -12,6 +12,7 @@ export class DashboardComponent {
   isOpen: boolean = false;
   isModalOpen: boolean = false;
   weatherData: any;
+  showalert:boolean=false
   cityname: string = '';
   private apiKey = '8620d226aa7170528e89de5cbd41a338';
   private apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
@@ -44,9 +45,17 @@ export class DashboardComponent {
   }
   closeModal() {
     this.isOpen = false;
+   
     console.log(this.isOpen)
   }
 
-  
+ submitdata(){
+  this.showalert=true
+  this.isOpen = false;
+  setTimeout(()=>{
+    this.showalert = false
+
+  },2000)
+ }
 
 }
