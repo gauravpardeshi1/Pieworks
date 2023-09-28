@@ -26,20 +26,19 @@
       "city": "London",
       "country": "US",
       "date": "2023-09-28",
-      "temperature": 30.3,
+      "temperature": 30,
       "unit": "Celsius",
-      "humidity": 60,
+      "humidity": 70,
       "windspeed": 12.7,
       "conditions": "Partly Cloudy",
       "icon": "partly-cloudy",
       "visibility": 10,
       "forecast": {
         "temperature": {
-          "min": 20.5,
-          "max": 28.8,
+          "min": 10,
+          "max": 30,
           "unit": "Celsius"
-        },
-        "conditions": "Partly Cloudy"
+        }
       }
     },
     {
@@ -64,26 +63,24 @@
       }
     },
     {
-      "id": 4,
-      "city": "Goa",
-      "country": "US",
+      "city": "Mumbai",
+      "country": "india",
       "date": "2023-09-28",
-      "temperature": 25.3,
+      "temperature": 25,
       "unit": "Celsius",
-      "humidity": 60,
-      "windspeed": 12.7,
+      "humidity": 70,
+      "windspeed": 18,
       "conditions": "Partly Cloudy",
       "icon": "partly-cloudy",
       "visibility": 10,
       "forecast": {
         "temperature": {
-          "min": 20.5,
-          "max": 28.8,
+          "min": 10,
+          "max": 18,
           "unit": "Celsius"
-        },
-        "conditions": "Partly Cloudy"
-      }
+        }
+      },
+      "id": 4
     }
-    
   ]
 }
