@@ -89,14 +89,13 @@ export class DashboardComponent {
 
     }
     //console.log('data', citydata);
-    const apiUrl = 'http://localhost:3000/cities';
+    const apiUrl = 'https://successful-cod-lingerie.cyclic.cloud/addcity';
 
     this.http.post(apiUrl, citydata).subscribe(
       (response) => {
         console.log('API Response:', response);
 
         this.CitydataComponent.getData();
-
       },
       (error) => {
         console.error('API Error:', error);

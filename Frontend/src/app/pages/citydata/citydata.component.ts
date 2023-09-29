@@ -1,4 +1,4 @@
-import { Component , Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface City {
@@ -28,13 +28,14 @@ export class CitydataComponent {
 
   // Initialize totalRecords
   public getData() {
-    this.http.get<any[]>(
-      `http://localhost:3000/cities?_page=${this.page}&_limit=3`
+    this.http.get<any>(
+      `https://successful-cod-lingerie.cyclic.cloud/cities?page=${this.page}`
     ).subscribe(
       (data) => {
 
-        this.cities = data
+        this.cities = data.weatherData
 
+  console.log('data-b',data)
 
       },
       (error) => {
@@ -49,12 +50,13 @@ export class CitydataComponent {
   ngOnInit() {
     this.getData();
 
-    this.http.get<any[]>(
-      `http://localhost:3000/cities`
+    this.http.get<any>(
+      `https://successful-cod-lingerie.cyclic.cloud/cities`
     ).subscribe(
       (data) => {
 
-        this.lastpage = Math.ceil(data.length / 3)
+        this.lastpage = data.totalPages
+        // console.log('lastpage', this.lastpage)
       })
   }
 
@@ -78,7 +80,7 @@ export class CitydataComponent {
   openModal() {
     this.isOpen = true;
     this.isModalOpen = true;
-    console.log(this.isOpen)
+    // console.log(this.isOpen)
   }
   closeModal() {
     this.isOpen = false;
@@ -86,14 +88,14 @@ export class CitydataComponent {
     console.log(this.isOpen)
   }
   updatecity(id: any) {
-    console.log('el', id)
-    this.http.get<any[]>(
-      `http://localhost:3000/cities/${id}`
+    // console.log('el', id)
+    this.http.get<any>(
+      `https://successful-cod-lingerie.cyclic.cloud/cities/${id}`
     ).subscribe(
       (data) => {
 
         this.citydata = data
-       // console.log('singledata',`http://localhost:3000/updatecity/${id}`, this.citydata)
+        // console.log('singledata', this.citydata)
       })
   }
   callBothFunctions(id: any) {
@@ -102,13 +104,13 @@ export class CitydataComponent {
   }
 
 
- 
+
   name: string = this.citydata.city
   humidity: number = this.citydata.humidity
   country: number = this.citydata.country
   temperature: number = this.citydata.temperature
   windspeed: number = this.citydata.windspeed
-  min: number = this.citydata?.forecast?.temperature?.min
+  min: number = this.citydata && this.citydata?.forecast?.temperature?.min
   max: number = this.citydata?.forecast?.temperature?.max
 
 
@@ -117,6 +119,7 @@ export class CitydataComponent {
 
 
   updatecitydata(id: number) {
+   
     const data = {
       "city": this.name,
       "country": this.country,
@@ -132,20 +135,20 @@ export class CitydataComponent {
 
       }
     }
-    console.log('updated', data)
-    this.http.patch(`http://localhost:3000/cities/${id}`, data).subscribe(
+    // console.log('updated', data)
+    this.http.patch(`https://successful-cod-lingerie.cyclic.cloud//cities/${id}`, data).subscribe(
       (response) => {
         // console.log('API Response:', response);
         this.getData()
         this.isOpen = false;
-        this.showupdatealert=true
+        this.showupdatealert = true
 
       },
       (error) => {
         console.error('API Error:', error);
 
       }
-      
+
     );
     setTimeout(() => {
       this.showupdatealert = false

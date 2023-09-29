@@ -11,9 +11,9 @@ require("dotenv").config();
 app.use(express.json())
 app.use(cors());
 
-app.use('/wheather', userRouter);
-app.use('/cities', userRouter);
-app.use('/updatecity', userRouter);
+app.use('/', userRouter);
+// app.use('/', userRouter);
+// app.use('/', userRouter);
 
 
 app.get("/", (req, res) => {
