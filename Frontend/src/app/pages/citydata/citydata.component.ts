@@ -20,7 +20,7 @@ export class CitydataComponent {
   isOpen: boolean = false;
   isModalOpen: boolean = false;
   showupdatealert: boolean = false
-
+  loading:boolean=false
   page: number = 1;
   limit: number = 3
   totalRecords: number = 0;
@@ -28,11 +28,13 @@ export class CitydataComponent {
 
   // Initialize totalRecords
   public getData() {
+    this.loading=true
     this.http.get<any>(
+      
       `https://successful-cod-lingerie.cyclic.cloud/cities?page=${this.page}`
     ).subscribe(
       (data) => {
-
+        this.loading=false
         this.cities = data.weatherData
 
   console.log('data-b',data)
