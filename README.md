@@ -41,8 +41,8 @@ A dynamic and user-friendly weather application built with Angular, Node.js, and
 - Successfully integrated these features using the Tailwind CSS library.
 - Existing data can be updated to reflect the latest weather information accurately.
   
-![Screenshot (1980)](https://github.com/gauravpardeshi1/Pieworks/assets/112778106/52722015-e08e-4fa9-a5dc-9c8394acf2dd)
 
+![Screenshot (1980)](https://github.com/gauravpardeshi1/Pieworks/assets/112778106/3ac54738-7d12-481f-a578-ae06da94166a)
 
 
 
@@ -53,17 +53,17 @@ A dynamic and user-friendly weather application built with Angular, Node.js, and
 - Successfully integrated these features using the Tailwind CSS library.
 - Implemented a pagination system that allows users to navigate through a large dataset easily. Users can move to the next or previous page of results with a single click.
   
-![citydata](https://github.com/gauravpardeshi1/Pieworks/assets/112778106/e9b5a90d-6a75-4d49-8453-1cf2b15e99e1)
+![citydata](https://github.com/gauravpardeshi1/Pieworks/assets/112778106/f700045c-ab25-40c7-8406-404aea1b1ee4)
 
 
 #### 3. Mobile View
 
 
-  ![mobileview2](https://github.com/gauravpardeshi1/Pieworks/assets/112778106/3ab6a349-e4a9-4f17-bec5-a2ee3a173a57)
+
+![mobileview](https://github.com/gauravpardeshi1/Pieworks/assets/112778106/92d31401-d17b-484e-8cfb-e018e9610af4)
 
 
-![mobileview](https://github.com/gauravpardeshi1/Pieworks/assets/112778106/03979e18-ccdd-441f-9656-73fdcf6dee02)
-
+![mobileview2](https://github.com/gauravpardeshi1/Pieworks/assets/112778106/91bf8d3c-0e46-4ff1-992b-62a9c0e92e9b)
 
 
 
