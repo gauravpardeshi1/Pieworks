@@ -2,7 +2,6 @@
 
 # Piwworks Assignment 
 
-#### Deploy Link : https://pieworks.vercel.app/
 
 ## Building an Interactive Angular-based Wheather application
 
